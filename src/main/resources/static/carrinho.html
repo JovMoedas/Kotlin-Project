@@ -1,0 +1,213 @@
+
+<DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="style.css">    
+        <!-- Favicon -->
+        <link rel="icon" href="quarto1.jpg" type="icon">
+        
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <title>THE HOTEL</title>
+    </head>
+  <style>
+    header {
+      background-color: #181818;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .cart-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .cart-header h2 {
+      margin: 0;
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .cart-header a {
+      text-decoration: none;
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .cart-header a:hover {
+  background-color: #1a2535;
+  transform: scale(1.05);
+}
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fafafa;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    }
+    .cart-item:hover
+     {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .cart-item img {
+      width: 120px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .cart-item-details h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .cart-item-details p {
+      margin: 5px 0;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .cart-item-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px solid #ddd;
+      padding-top: 10px;
+    }
+
+    .cart-total h3 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+    }
+
+    .cart-total .total-price {
+      font-size: 1.8rem;
+      color: #2c3e50;   
+      font-weight: bold;
+    }
+
+    .checkout-button {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .checkout-button button {
+      background-color: #2c3e50;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .checkout-button button:hover {
+      background-color: #1a2535;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Carrinho de Compras</h1>
+  </header>
+  <div class="cart-container">
+    <div class="cart-header">
+      <h2>Seus Quartos</h2>
+      <a href="index.html">Continuar Comprando</a>
+    </div>
+    <div class="cart-items">
+      <!-- Item 1 -->
+      <div class="cart-item">
+        <img src="assets/img/quarto1.jpg" alt="Quarto 1">
+        <div class="cart-item-details">
+          <h3>Suíte Vista Mar</h3>
+          <p>Uma experiência luxuosa com vista para o mar.</p>
+        </div>
+        <div class="cart-item-price">450,00 €</div>
+      </div>
+      <!-- Item 2 -->
+      <div class="cart-item">
+        <img src="assets/img/quarto1.jpg" alt="Quarto 2">
+        <div class="cart-item-details">
+          <h3>Quarto Elegance</h3>
+          <p>Conforto e design moderno no coração da cidade.</p>
+        </div>
+        <div class="cart-item-price">350,00 €</div>
+      </div>
+      <!-- Item 3 -->
+      <div class="cart-item">
+        <img src="assets/img/room-1.jpg" alt="Quarto 3">
+        <div class="cart-item-details">
+          <h3>Suíte Royal</h3>
+          <p>Luxo sem igual com serviço exclusivo.</p>
+        </div>
+        <div class="cart-item-price">650,00 €</div>
+      </div>
+    </div>
+    <div class="cart-total">
+      <h3>Total:</h3>
+      <div class="total-price">1450,00 €</div>
+    </div>
+    <div class="checkout-button">
+      <button id="finalizarCompra">Finalizar Compra</button>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+
+document.getElementById("finalizarCompra").addEventListener("click", function() {
+    window.location.href = "checkout.html";
+});
+</script>

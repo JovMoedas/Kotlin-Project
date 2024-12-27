@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE HOTEL</title>
+  <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="style.css">   
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!--=============== BOXICONS ===============-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <style>
+  
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+   /* Container Principal */
+   .container {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 40px auto;
+      padding: 0 20px;
+      max-width: 2000px;
+      justify-content: center;
+    }
+
+    .carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.carousel-images img {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.carousel-buttons button {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-buttons button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.carousel-indicators .indicator {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-indicators .indicator.active {
+  background: #fff;
+}
+    /* Imagem do Quarto */
+    .product-image {
+      width: 100%;
+      max-width: 600px;
+      margin-right: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .product-image img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Detalhes do Quarto */
+    .product-details {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .product-details h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-weight: bold;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .product-details p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #27ae60;
+      margin-top: 20px;
+    }
+
+    .button {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .button:hover {
+      background-color: #2ecc71;
+      transform: translateY(-3px);
+      animation: pulse 0.8s infinite;
+    }
+
+    /* Ícones Adicionais e Seções */
+    .features {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .features div {
+      text-align: center;
+      flex: 1;
+      margin: 10px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .features div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .features div i {
+      font-size: 2rem;
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+
+    .features div h4 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .features div p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-image, .product-details {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      .features {
+        flex-direction: column;
+      }
+
+      .features div {
+        margin-bottom: 20px;
+      }
+    }
+/* Seção de Reserva */
+.booking-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 50px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.booking-content {
+  width: 40%;
+  padding: 25px;
+  background: linear-gradient(135deg, #ffffff, #f4f4f4);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.booking-content:hover {
+  transform: translateY(-5px);
+}
+
+.booking-content h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.price-info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.price-info .price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #d9534f;
+  margin-bottom: 10px;
+}
+
+.price-info small {
+  font-size: 1rem;
+  color: #888;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #d9534f;
+  box-shadow: 0 0 10px rgba(217, 83, 79, 0.4);
+}
+
+.form-group input[type="date"] {
+  cursor: pointer;
+}
+
+.btn.reserve-btn {
+  padding: 18px;
+  background: linear-gradient(135deg, #d9534f, #c9302c);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(217, 83, 79, 0.3);
+}
+
+.btn.reserve-btn:hover {
+  background: linear-gradient(135deg, #c9302c, #b52a26);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(217, 83, 79, 0.5);
+}
+
+.room-details {
+  flex: 1;
+  margin-right: 30px;
+  padding: 20px;
+}
+
+.room-details h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.room-details p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .booking-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .booking-content,
+  .room-details {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* Seção de Inscrição para Desconto */
+.subscribe-section {
+  background-color: #181818;
+  padding: 50px 0;
+  text-align: center;
+  margin-top: 50px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.subscribe-section h2 {
+  font-size: 2rem;
+  color: whitesmoke;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.subscribe-section p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.subscribe-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.subscribe-form input[type="email"] {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  width: 300px;
+  transition: border-color 0.3s ease;
+}
+
+.subscribe-form input[type="email"]:focus {
+  border-color: #2c3e50;
+  outline: none;
+  box-shadow: 0 0 8px rgba(217, 83, 79, 0.4);
+}
+
+.subscribe-form button {
+  padding: 12px 30px;
+  background-color: #cdbba9;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.subscribe-form button:hover {
+  background-color: #c9302c;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animação para a seção de inscrição */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subscribe-section {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .subscribe-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .subscribe-section p {
+    font-size: 1rem;
+  }
+
+  .subscribe-form input[type="email"] {
+    width: 100%;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+ <!--=============== HEADER ===============-->
+ <nav class="nav" id="nav"> 
+  <a href="index.html" class="nav__logo">
+   The Hotel
+  </a>
+<ul class="nav__list">
+
+  <li class="nav__item">
+    <a href="index.html" class="nav__link active-link">Início</a>
+  </li>
+
+  <li class="nav__item">
+    <a href="produtos.html" class="nav__link">Quartos</a>
+  </li>
+
+  <li class="nav__item">
+    <a href="projetos.html" class="nav__link">Projetos</a>
+  </li>
+
+  <li class="nav__item">
+      <a href="contato.html" class="nav__link">Contato</a>
+  </li>
+
+  <li class="nav__item">
+      <a href="sobrenos.html" class="nav__link">Sobre Nós</a>
+  </li>
+  <li class="nav__item">
+    <a href="login.html" class="nav__link">
+      <i class='bx bx-user-circle nav__link_icon'></i>
+    </a>
+  </li>
+  
+  <li class="nav__item">
+    <i class='bx bx-cart-alt nav__link_icon'></i> 
+    <span class="cart__badge">3</span>  
+  </li>
+  
+</ul>     
+</div>
+</nav>
+
+<div class="container">
+  <!-- Carrossel de Imagens -->
+  <div class="carousel">
+    <div class="carousel-images">
+      <img src="assets/img/quarto1.jpg" alt="Quarto 1">
+      <img src="assets/img/quarto3.jpg" alt="Quarto 2">
+      <img src="assets/img/room-1.jpg" alt="Quarto 3">
+      <img src="assets/img/quarto4.jpg" alt="Quarto 4">
+    </div>
+    <div class="carousel-buttons">
+      <button id="prev"><i class="fas fa-chevron-left"></i></button>
+      <button id="next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="carousel-indicators">
+      <span class="indicator active"></span>
+      <span class="indicator"></span>
+      <span class="indicator"></span>
+      <span class="indicator"></span>
+    </div>
+  </div>
+  
+  
+  <div class="booking-section">
+    <!-- Detalhes do Quarto -->
+    <div class="room-details">
+      <h1>Deluxe Quarto Com Bela Vista</h1>
+      <p>
+        Desfrute de uma experiência única com vista panorâmica e o máximo conforto. 
+        O quarto inclui cama king-size, Wi-Fi gratuito, ar-condicionado, uma banheira 
+        de hidromassagem, e um banheiro luxuoso. Perfeito para até 2 pessoas, em um ambiente 
+        de total privacidade e tranquilidade.
+      </p>
+    </div>
+  
+    <!-- Área de Reserva -->
+    <div class="booking-content">
+      <h2>Reserve Este Quarto</h2>
+      <div class="price-info">
+        <span class="price">€180</span>
+        <small>por noite</small>
+      </div>
+      <form class="booking-form">
+        <div class="form-group">
+          <label for="checkin-date">Data de Check-in:</label>
+          <input type="date" id="checkin-date" required />
+        </div>
+        <div class="form-group">
+          <label for="checkout-date">Data de Check-out:</label>
+          <input type="date" id="checkout-date" required />
+        </div>
+        <div class="form-group">
+          <label for="guests">Número de Hóspedes:</label>
+          <select id="guests">
+            <option value="1">1 Hóspede</option>
+            <option value="2">2 Hóspedes</option>
+            <option value="3">3 Hóspedes</option>
+            <option value="4">4 Hóspedes</option>
+          </select>
+        </div>
+        <button type="submit" class="btn reserve-btn">Reservar Agora</button>
+      </form>
+    </div>
+  </div>
+  
+  
+  
+  
+
+  </div>
+</div>
+  <!-- Seções Adicionais -->
+  <div class="features">
+    <div>
+      <i class="fas fa-coffee"></i>
+      <h4>Serviço de Café</h4>
+      <p>Aproveite o café da manhã no conforto do seu quarto.</p>
+    </div>
+    <div>
+      <i class="fas fa-wifi"></i>
+      <h4>Wi-Fi Grátis</h4>
+      <p>Conexão de alta velocidade em todo o hotel.</p>
+    </div>
+    <div>
+      <i class="fas fa-swimmer"></i>
+      <h4>Piscina</h4>
+      <p>Aproveite momentos relaxantes na piscina.</p>
+    </div>
+    <div>
+      <i class="fas fa-parking"></i>
+      <h4>Estacionamento</h4>
+      <p>Estacionamento privativo disponível para os hóspedes.</p>
+    </div>
+    <div>
+      <i class="fas fa-dumbbell"></i>
+      <h4>Academia</h4>
+      <p>Mantenha-se ativo na academia do hotel.</p>
+    </div>
+  </div>
+  <br> <br> <br>
+
+  <div class="subscribe-section">
+    <h2>Assine para Receber Desconto!</h2>
+    <p>Inscreva-se com seu e-mail e receba um desconto exclusivo de 10% em sua primeira reserva.</p>
+    <form class="subscribe-form">
+      <input type="email" placeholder="Digite seu e-mail..." required />
+      <button type="submit">Inscrever-se</button>
+    </form>
+  </div>
+
+  <br> <br> <br>
+  
+           <!--=============== FOOTER ===============-->
+           <footer>
+            <div class="container">
+            <div class="aboutus" >
+              <h2>the hotel</h2>
+              <br>
+              <p>intro sobre o hotel oara colocar no footer e bla bla pq isto é o trabalho da cadeira ez</p>
+              <ul class="sci" >
+                <li>
+                  <a href="#"><i class='bx bxl-instagram'></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class='bx bxl-twitter'></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class='bx bxl-youtube'></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class='bx bxl-discord-alt'></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="sec quicklinks">
+              <h2>Suporte</h2>
+              <ul>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="@">Ajuda</a></li>
+                <li><a href="@">Duvidas</a></li>
+              </ul>
+            </div>
+            <div class="sec quicklinks">
+              <h2>Politica</h2>
+              <ul>
+              <li><a href="politica.html">Privacy Politcs</a></li>  
+              </ul>
+            </div>
+            <div class="sec contact">
+              <h2>Contacto</h2>
+              <ul class="info">
+                <li>
+                  <span>
+                    <i class='bx bxs-phone'></i>
+                  </span>
+                  <p>
+                    <a href="€">
+                      +351 981 239 235
+                    </a>
+                  </p>
+                </li>
+                <li>
+                <span>
+                  <i class='bx bx-envelope'></i>
+                </span>
+                <p>
+                  <a href="gmail.com">
+                    thehotel@gmail.com
+                  </a>
+                </p>
+              </li>  
+              </ul>
+            </div>
+            </div>
+    </footer>
+
+<div class="copyright">
+<p>Copyright ©2024 THE HOTEL. All Rights Reserved. </p>
+</div> 
+</body>
+<script>
+  const images = document.querySelector('.carousel-images');
+  const prevButton = document.getElementById('prev');
+  const nextButton = document.getElementById('next');
+  const indicators = document.querySelectorAll('.carousel-indicators .indicator');
+  let currentIndex = 0;
+  
+  // Atualiza o carrossel e os indicadores
+  const updateCarousel = () => {
+    images.style.transform = `translateX(-${currentIndex * 100}%)`;
+  
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === currentIndex);
+    });
+  };
+  
+  // Navegação pelos botões
+  prevButton.addEventListener('click', () => {
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : images.children.length - 1;
+    updateCarousel();
+  });
+  
+  nextButton.addEventListener('click', () => {
+    currentIndex = currentIndex < images.children.length - 1 ? currentIndex + 1 : 0;
+    updateCarousel();
+  });
+  
+  // Navegação pelos indicadores
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      currentIndex = index;
+      updateCarousel();
+    });
+  });
+  
+  // Atualização automática do carrossel (opcional)
+  let autoPlay = setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.children.length;
+    updateCarousel();
+  }, 5000);
+  
+  // Pausar autoplay ao interagir
+  const pauseAutoPlay = () => clearInterval(autoPlay);
+  prevButton.addEventListener('mouseover', pauseAutoPlay);
+  nextButton.addEventListener('mouseover', pauseAutoPlay);
+  indicators.forEach((indicator) => indicator.addEventListener('mouseover', pauseAutoPlay));
+  </script>
+  
+</html>
