@@ -18,8 +18,6 @@ Bem-vindo à **API**, uma aplicação demonstrativa desenvolvida com Kotlin e Kt
   - [Configurando o banco de dados](#configurando-o-banco-de-dados)
   - [Executando a API](#executando-a-api)
   - [Endpoints Disponíveis](#endpoints-disponíveis)
-- [Testando a API](#testing-the-api)
-
 ---
 
 ## **Visão Geral**
