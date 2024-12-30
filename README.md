@@ -6,6 +6,37 @@ Bem-vindo à **API**, uma aplicação demonstrativa desenvolvida com Kotlin e Kt
 ![Framework](https://img.shields.io/badge/framework-Ktor-blue.svg)  
 ![Database](https://img.shields.io/badge/database-MySql-blue.svg)  
 
+---
+
+## **Índice**
+
+- [Visão geral](#visão-geral)
+- [Recursos](#recursos)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Instalação](#instalação)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Configurando o banco de dados](#configurando-o-banco-de-dados)
+  - [Executando a API](#executando-a-api)
+  - [Endpoints Disponíveis](#endpoints-disponíveis)
+  - [Exemplos com curl](#exemplos-com-curl)
+- [Testando a API](#testing-the-api)
+
+---
+
+## **Visão Geral**
+
+Esta API é projetada para manipular operações básicas de gerenciamento de usuários/carros, oferecendo endpoints RESTful simples e uma estrutura organizada em **Kotlin**.
+
+---
+
+## **Recursos**
+
+- **Registro de Usuários**: Criação de novos usuários com nome, e-mail , senha , genero.
+- **Registro de Carros**: Criação de novos carros com nome, marca , modelo , matricula, preço e ano.
+- **Edição, exclusão, consulta de Usuarios**: Consulta, exclusão, edição dos usuarios e dos carros.
+- **Fácil Configuração**: Pode ser adaptada rapidamente para diferentes bancos de dados.
+
+---
 
 
 ## Features
