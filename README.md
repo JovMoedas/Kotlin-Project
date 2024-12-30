@@ -122,49 +122,111 @@ Para rodar a API localmente, siga os passos abaixo:
 
 Para testar a API, você pode usar o **Postman**.
 
-### Endpoints Disponíveis
+##  **Endpoints Overview**
 
-| **Método** | **Endpoint**       | **Descrição**                    | **Exemplo de Entrada**                                                                 |
-|------------|--------------------|----------------------------------|--------------------------------------------------------------------------------------|
-| **POST**   | `/register`  | Cria um novo usuário.            | `{"name":"John Doe","username":"john_doe","password":"password123","dob":"1990-05-15","gender":"Male"}`                 |
-| **GET**    | `/user/getUser/{email}`      | Busca detalhes de um usuário.    | `email = teste@email.com`                                                                             |
-| **DELETE**    | `/user/delete`  | Editar um usuário.            | `{  "email": "joao@email.com" }`                 |
-
-
-| **Método** | **Endpoint**       | **Descrição**                    | **Exemplo de Entrada**                                                                 |
-|------------|--------------------|----------------------------------|--------------------------------------------------------------------------------------|
-| **POST**   | `/car/createCar`  | Cria um novo carro.            | `{"marca": "Toyota", "modelo": "gtr", "matricula": "00000000" }`                 |
-| **GET**    | `/car/getCar/{matricula}`      | Busca detalhes de um carro.    | `matricula = 012938032`                                                                             |
-| **DELETE**    | `/car/delete`  | Editar um carro.            | `{  "matricula": "234154" }`                 |
-
----
-
-### Endpoints and JSON Examples for API
+| **Method** | **Endpoint**         | **Description**                |
+|------------|-----------------------|--------------------------------|
+| `GET`      | `/`                  | Welcome message                |
+| `GET`      | `/users`             | Fetch all users                |
+| `POST`     | `/login`             | User login                     |
+| `DELETE`   | `/delete-user`       | Delete a user                  |
+| `POST`     | `/change-password`   | Change user password           |
+| `POST`     | `/register`          | Register a new user            |
+| `POST`     | `/car-create`        | Create a new car entry         |
+| `GET`      | `/car-list`          | Fetch all cars                 |
+| `DELETE`   | `/delete-cars`       | Delete a car                   |
+| `PUT`      | `/car-edit`          | Edit car details               |
+| `PUT`      | `/car-change-owner`  | Change car owner               |
 
 ---
 
-#### Endpoint: `GET /`
-**Description:**
-Returns a welcome message.
+##  **Endpoints Details**
 
-**Example Response:**
-```json
-{
-  "message": "Welcome to Ktor Mysql"
-}
-```
+###  **User Endpoints**
 
----
+#### `GET /`
+- **Description:** Retorna uma mensagem de boas-vindas.  
+- **Response Example:**
+    ```json
+    {
+      "message": "Welcome to Ktor Mysql"
+    }
+    ```
 
-#### Endpoint: `GET /users`
-**Description:**
-Fetches all users from the database.
+#### `GET /users`
+- **Description:** Busca todos os usuários no banco de dados.  
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": [
+        {
+          "name": "John Doe",
+          "username": "johndoe",
+          "password": "1234",
+          "dob": "1990-01-01",
+          "gender": "Male"
+        }
+      ]
+    }
+    ```
 
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": [
+#### `POST /login`
+- **Description:** Realiza o login do usuário.  
+- **Request Example:**
+    ```json
+    {
+      "username": "johndoe",
+      "password": "1234"
+    }
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "Login successful"
+    }
+    ```
+
+#### `DELETE /delete-user`
+- **Description:** Deleta um usuário.  
+- **Request Example:**
+    ```json
+    {
+      "username": "johndoe",
+      "password": "1234"
+    }
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "User deleted successfully"
+    }
+    ```
+
+#### `POST /change-password`
+- **Description:** Altera a senha de um usuário.  
+- **Request Example:**
+    ```json
+    {
+      "username": "johndoe",
+      "currentPassword": "1234",
+      "newPassword": "5678"
+    }
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "Password updated successfully"
+    }
+    ```
+
+#### `POST /register`
+- **Description:** Registra um novo usuário.  
+- **Request Example:**
+    ```json
     {
       "name": "John Doe",
       "username": "johndoe",
@@ -172,219 +234,121 @@ Fetches all users from the database.
       "dob": "1990-01-01",
       "gender": "Male"
     }
-  ]
-}
-```
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "1 rows are affected"
+    }
+    ```
 
 ---
 
-#### Endpoint: `POST /login`
-**Description:**
-Logs in a user.
+### **Car Endpoints**
 
-**Example Request:**
-```json
-{
-  "username": "johndoe",
-  "password": "1234"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "Login successful"
-}
-```
-
----
-
-#### Endpoint: `DELETE /delete-user`
-**Description:**
-Deletes a user.
-
-**Example Request:**
-```json
-{
-  "username": "johndoe",
-  "password": "1234"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "User deleted successfully"
-}
-```
-
----
-
-#### Endpoint: `POST /change-password`
-**Description:**
-Changes a user’s password.
-
-**Example Request:**
-```json
-{
-  "username": "johndoe",
-  "currentPassword": "1234",
-  "newPassword": "5678"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "Password updated successfully"
-}
-```
-
----
-
-#### Endpoint: `POST /register`
-**Description:**
-Registers a new user.
-
-**Example Request:**
-```json
-{
-  "name": "John Doe",
-  "username": "johndoe",
-  "password": "1234",
-  "dob": "1990-01-01",
-  "gender": "Male"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "1 rows are affected"
-}
-```
-
----
-
-#### Endpoint: `POST /car-create`
-**Description:**
-Creates a new car entry.
-
-**Example Request:**
-```json
-{
-  "Marca": "Toyota",
-  "Modelo": "Corolla",
-  "Matricula": "XYZ1234",
-  "Ano": 2020,
-  "Preco": 20000
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "Car created successfully"
-}
-```
-
----
-
-#### Endpoint: `GET /car-list`
-**Description:**
-Fetches all cars from the database.
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": [
+#### `POST /car-create`
+- **Description:** Cria uma nova entrada de carro.  
+- **Request Example:**
+    ```json
     {
       "Marca": "Toyota",
       "Modelo": "Corolla",
       "Matricula": "XYZ1234",
       "Ano": 2020,
-      "Preco": 20000,
-      "Proprietario": "Stand"
+      "Preco": 20000
     }
-  ]
-}
-```
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "Car created successfully"
+    }
+    ```
+
+#### `GET /car-list`
+- **Description:** Busca todos os carros no banco de dados.  
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": [
+        {
+          "Marca": "Toyota",
+          "Modelo": "Corolla",
+          "Matricula": "XYZ1234",
+          "Ano": 2020,
+          "Preco": 20000,
+          "Proprietario": "Stand"
+        }
+      ]
+    }
+    ```
+
+#### `DELETE /delete-cars`
+- **Description:** Deleta um carro pela matrícula.  
+- **Request Example:**
+    ```json
+    {
+      "Matricula": "XYZ1234",
+      "Marca": "Toyota"
+    }
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "Car deleted successfully"
+    }
+    ```
+
+#### `PUT /car-edit`
+- **Description:** Edita detalhes de um carro.  
+- **Request Example:**
+    ```json
+    {
+      "Matricula": "XYZ1234",
+      "Marca": "Toyota",
+      "Modelo": "Camry",
+      "Ano": 2021,
+      "Preco": 22000,
+      "Proprietario": "John Doe"
+    }
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "Car details updated successfully"
+    }
+    ```
+
+#### `PUT /car-change-owner`
+- **Description:** Altera o proprietário de um carro.  
+- **Request Example:**
+    ```json
+    {
+      "Matricula": "XYZ1234",
+      "NovoProprietario": "Jane Doe"
+    }
+    ```
+- **Response Example:**
+    ```json
+    {
+      "isSuccess": true,
+      "data": "Car owner changed successfully"
+    }
+    ```
 
 ---
 
-#### Endpoint: `DELETE /delete-cars`
-**Description:**
-Deletes a car by matricula.
-
-**Example Request:**
-```json
-{
-  "Matricula": "XYZ1234",
-  "Marca": "Toyota"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "Car deleted successfully"
-}
-```
+##  **Best Practices**
+- Certifique-se de enviar os dados no formato correto.  
+- Use cabeçalhos apropriados, como `Content-Type: application/json`.  
+- Sempre verifique as respostas para capturar possíveis erros.
 
 ---
-
-#### Endpoint: `PUT /car-edit`
-**Description:**
-Edits car details.
-
-**Example Request:**
-```json
-{
-  "Matricula": "XYZ1234",
-  "Marca": "Toyota",
-  "Modelo": "Camry",
-  "Ano": 2021,
-  "Preco": 22000,
-  "Proprietario": "John Doe"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "Car details updated successfully"
-}
-```
-
----
-
-#### Endpoint: `PUT /car-change-owner`
-**Description:**
-Changes the owner of a car.
-
-**Example Request:**
-```json
-{
-  "Matricula": "XYZ1234",
-  "NovoProprietario": "Jane Doe"
-}
-```
-
-**Example Response:**
-```json
-{
-  "isSuccess": true,
-  "data": "Car owner changed successfully"
-}
-```
 
 
 
