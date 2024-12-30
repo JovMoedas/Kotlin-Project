@@ -15,7 +15,7 @@ Bem-vindo à **API**, uma aplicação demonstrativa desenvolvida com Kotlin e Kt
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Instalação](#instalação)
   - [Pré-requisitos](#pré-requisitos)
-  - [Configurando o banco de dados](#configurando-o-banco-de-dados)
+  - [Configurando a base de dados](#configurando-a-base-de-dados)
   - [Executando a API](#executando-a-api)
   - [Endpoints Disponíveis](#endpoints-details)
 ---
@@ -48,7 +48,7 @@ src
             └── model // Modelos de Domínio
               │── Car
               │── User
-            └── mysql  // Conexão com o Banco de Dados
+            └── mysql  // Conexão com a Base de Dados
               │── DbConection
              └── plugins
               │── Routing.kt
@@ -81,11 +81,11 @@ Antes de iniciar o projeto, você precisará instalar os seguintes recursos:
 
 ---
 
-### **Configurando o banco de dados**
+### **Configurando a base de dados**
 
-1. **Instale o MySql** e crie um novo banco de dados chamado `ktor`.
+1. **Instale o MySql** e crie uma nova base de dados chamado `ktor`.
 
-2. **Configure a conexão com o banco de dados** no arquivo `DbConection.kt`:
+2. **Configure a conexão com a base de dados** no arquivo `DbConection.kt`:
 
    ```kotlin
    package com.example.mysql
