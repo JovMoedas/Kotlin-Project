@@ -1,12 +1,12 @@
-# ktor-sample
+# Kotlin - Ktor - MySql - API
 
-This project was created using the [Ktor Project Generator](https://start.ktor.io).
+Bem-vindo à **API**, uma aplicação demonstrativa desenvolvida com Kotlin e Ktor  conectada a um banco de dados MySql. O objetivo deste projeto é fornecer endpoints para gerenciamento de usuários e carros, incluindo registro, autenticação e manipulação de dados básicos(troca de senhas/matriculas).
 
-Here are some useful links to get you started:
+![Platform](https://img.shields.io/badge/platform-Kotlin-blue.svg)
+![Framework](https://img.shields.io/badge/framework-Ktor-blue.svg)  
+![Database](https://img.shields.io/badge/database-MySql-blue.svg)  
 
-- [Ktor Documentation](https://ktor.io/docs/home.html)
-- [Ktor GitHub page](https://github.com/ktorio/ktor)
-- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
+
 
 ## Features
 
