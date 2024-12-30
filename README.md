@@ -353,6 +353,6 @@ Para testar a API, você pode usar o **Postman**.
 
 
 2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
-2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://192.168.56.1 IP:8080
+2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://192.168.56.1:8080
 ```
 
