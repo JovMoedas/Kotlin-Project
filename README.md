@@ -118,7 +118,7 @@ Para rodar a API localmente, siga os passos abaixo:
 
 3. **A API estará disponível em:**:
      ```bash
-     http://localhost:8080
+     http://192.168.56.1:8080
 
 Para testar a API, você pode usar o **Postman**.
 
@@ -126,7 +126,7 @@ Para testar a API, você pode usar o **Postman**.
 
 | **Método** | **Endpoint**       | **Descrição**                    | **Exemplo de Entrada**                                                                 |
 |------------|--------------------|----------------------------------|--------------------------------------------------------------------------------------|
-| **POST**   | `/user/createUser`  | Cria um novo usuário.            | `{ "name": "João", "email": "joao@email.com", "password": "123456" }`                 |
+| **POST**   | `/register`  | Cria um novo usuário.            | `{"name":"John Doe","username":"john_doe","password":"password123","dob":"1990-05-15","gender":"Male"}`                 |
 | **GET**    | `/user/getUser/{email}`      | Busca detalhes de um usuário.    | `email = teste@email.com`                                                                             |
 | **DELETE**    | `/user/delete`  | Editar um usuário.            | `{  "email": "joao@email.com" }`                 |
 
