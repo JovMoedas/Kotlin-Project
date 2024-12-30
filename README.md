@@ -39,6 +39,37 @@ Esta API é projetada para manipular operações básicas de gerenciamento de us
 ---
 
 
+## **Estrutura do Projeto**
+
+A estrutura do projeto está organizada da seguinte forma:
+
+```plaintext
+src
+└── main
+    └── kotlin
+        └── com.example
+            └── model
+              │── Car
+              │── User
+            └── mysql
+              │── EntityCar
+              │── EntityUser
+            ├── data    // DTOs (Data Transfer Objects)
+            │   └── UserRequest.kt
+            │
+            ├── db  // Conexão com o Banco de Dados
+            │   └── Connectiondb.kt
+            │
+            ├── model   // Modelos de Domínio
+            │   └── User.kt
+            │
+            └── services    // Lógica de Serviços
+                ├── IUserServices.kt
+                └── UserServices.kt
+```
+
+---
+
 ## Features
 
 Here's a list of features included in this project:
