@@ -48,37 +48,42 @@ src
 └── main
     └── kotlin
         └── com.example
-            └── model
+            └── model // Modelos de Domínio
               │── Car
               │── User
-            └── mysql
+            └── mysql  // Conexão com o Banco de Dados
               │── EntityCar
               │── EntityUser
-            ├── data    // DTOs (Data Transfer Objects)
-            │   └── UserRequest.kt
-            │
-            ├── db  // Conexão com o Banco de Dados
-            │   └── Connectiondb.kt
-            │
-            ├── model   // Modelos de Domínio
-            │   └── User.kt
-            │
-            └── services    // Lógica de Serviços
-                ├── IUserServices.kt
-                └── UserServices.kt
+             └── plugins
+              │── Routing.kt
+              │── Serialization.kt
+             └── route
+              │── ChangeOwnerRequest
+              │── DeleteCars
+              │── DeleteUserRequest
+              │── EditCarRequest
+              │── LoginRequest
+              │── PasswordChangeRequest
+              │── RouteUser.kt
+             └── util
+              │── Aplication.kt
+
+
 ```
 
 ---
 
-## Features
+## **Instalação**
 
-Here's a list of features included in this project:
+### **Pré-requisitos**
 
-| Name                                                     | Description                                                    |
-| ----------------------------------------------------------|---------------------------------------------------------------- |
-| [Routing](https://start.ktor.io/p/routing)               | Provides a structured routing DSL                              |
-| [Authentication](https://start.ktor.io/p/auth)           | Provides extension point for handling the Authorization header |
-| [Static Content](https://start.ktor.io/p/static-content) | Serves static files from defined locations                     |
+Antes de iniciar o projeto, você precisará instalar os seguintes recursos:
+
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+- [Mysql](https://www.mysql.org/download/)
+- [Postman](https://postman.org/install/)
+
+---
 
 ## Building & Running
 
