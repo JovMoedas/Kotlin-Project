@@ -18,7 +18,6 @@ Bem-vindo à **API**, uma aplicação demonstrativa desenvolvida com Kotlin e Kt
   - [Configurando o banco de dados](#configurando-o-banco-de-dados)
   - [Executando a API](#executando-a-api)
   - [Endpoints Disponíveis](#endpoints-disponíveis)
-  - [Exemplos com curl](#exemplos-com-curl)
 - [Testando a API](#testing-the-api)
 
 ---
@@ -52,8 +51,7 @@ src
               │── Car
               │── User
             └── mysql  // Conexão com o Banco de Dados
-              │── EntityCar
-              │── EntityUser
+              │── DbConection
              └── plugins
               │── Routing.kt
               │── Serialization.kt
@@ -85,23 +83,63 @@ Antes de iniciar o projeto, você precisará instalar os seguintes recursos:
 
 ---
 
-## Building & Running
+### **Configurando o banco de dados**
 
-To build or run the project, use one of the following tasks:
+1. **Instale o MySql** e crie um novo banco de dados chamado `ktor`.
 
-| Task                          | Description                                                          |
-| -------------------------------|---------------------------------------------------------------------- |
-| `./gradlew test`              | Run the tests                                                        |
-| `./gradlew build`             | Build everything                                                     |
-| `buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
-| `buildImage`                  | Build the docker image to use with the fat JAR                       |
-| `publishImageToLocalRegistry` | Publish the docker image locally                                     |
-| `run`                         | Run the server                                                       |
-| `runDocker`                   | Run using the local docker image                                     |
+2. **Configure a conexão com o banco de dados** no arquivo `DbConection.kt`:
 
-If the server starts successfully, you'll see the following output:
+   ```kotlin
+   package com.example.mysql
+   
+   import org.ktorm.database.Database
+   object DbConnection {
+    private val db: Database? = null
+    fun getDatabaseInstance(): Database {
+        return db ?: Database.connect(
+            url = "jdbc:mysql://127.0.0.1:3306/ktor",
+            driver = "com.mysql.cj.jdbc.Driver",
+            user = "root",
+            password = "duarte1234"
+        )
+    }
+   }
 
-```
+
+### Executando a API
+
+Para rodar a API localmente, siga os passos abaixo:
+
+1. **Navegue até o diretório do projeto:
+     ```bash
+     git clone https://github.com/JovMoedas/
+
+2. **Execute o projeto com Gradle:**:
+    ```bash
+     ./gradlew run
+
+3. **A API estará disponível em:**:
+     ```bash
+     http://localhost:8080
+
+Para testar a API, você pode usar o **Postman**.
+
+### Endpoints Disponíveis
+
+| **Método** | **Endpoint**       | **Descrição**                    | **Exemplo de Entrada**                                                                 |
+|------------|--------------------|----------------------------------|--------------------------------------------------------------------------------------|
+| **POST**   | `/user/createUser`  | Cria um novo usuário.            | `{ "name": "João", "email": "joao@email.com", "password": "123456" }`                 |
+| **GET**    | `/user/getUser/{email}`      | Busca detalhes de um usuário.    | `email = teste@email.com`                                                                             |
+| **DELETE**    | `/user/delete`  | Editar um usuário.            | `{  "email": "joao@email.com" }`                 |
+
+
+| **Método** | **Endpoint**       | **Descrição**                    | **Exemplo de Entrada**                                                                 |
+|------------|--------------------|----------------------------------|--------------------------------------------------------------------------------------|
+| **POST**   | `/car/createCar`  | Cria um novo carro.            | `{"marca": "Toyota", "modelo": "gtr", "matricula": "00000000" }`                 |
+| **GET**    | `/car/getCar/{matricula}`      | Busca detalhes de um carro.    | `matricula = 012938032`                                                                             |
+| **DELETE**    | `/car/delete`  | Editar um carro.            | `{  "matricula": "234154" }`                 |
+
+---
 2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
 2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
 ```
