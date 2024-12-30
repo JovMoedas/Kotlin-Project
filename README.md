@@ -138,6 +138,256 @@ Para testar a API, você pode usar o **Postman**.
 | **DELETE**    | `/car/delete`  | Editar um carro.            | `{  "matricula": "234154" }`                 |
 
 ---
+
+### Endpoints and JSON Examples for API
+
+---
+
+#### Endpoint: `GET /`
+**Description:**
+Returns a welcome message.
+
+**Example Response:**
+```json
+{
+  "message": "Welcome to Ktor Mysql"
+}
+```
+
+---
+
+#### Endpoint: `GET /users`
+**Description:**
+Fetches all users from the database.
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": [
+    {
+      "name": "John Doe",
+      "username": "johndoe",
+      "password": "1234",
+      "dob": "1990-01-01",
+      "gender": "Male"
+    }
+  ]
+}
+```
+
+---
+
+#### Endpoint: `POST /login`
+**Description:**
+Logs in a user.
+
+**Example Request:**
+```json
+{
+  "username": "johndoe",
+  "password": "1234"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "Login successful"
+}
+```
+
+---
+
+#### Endpoint: `DELETE /delete-user`
+**Description:**
+Deletes a user.
+
+**Example Request:**
+```json
+{
+  "username": "johndoe",
+  "password": "1234"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "User deleted successfully"
+}
+```
+
+---
+
+#### Endpoint: `POST /change-password`
+**Description:**
+Changes a user’s password.
+
+**Example Request:**
+```json
+{
+  "username": "johndoe",
+  "currentPassword": "1234",
+  "newPassword": "5678"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "Password updated successfully"
+}
+```
+
+---
+
+#### Endpoint: `POST /register`
+**Description:**
+Registers a new user.
+
+**Example Request:**
+```json
+{
+  "name": "John Doe",
+  "username": "johndoe",
+  "password": "1234",
+  "dob": "1990-01-01",
+  "gender": "Male"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "1 rows are affected"
+}
+```
+
+---
+
+#### Endpoint: `POST /car-create`
+**Description:**
+Creates a new car entry.
+
+**Example Request:**
+```json
+{
+  "Marca": "Toyota",
+  "Modelo": "Corolla",
+  "Matricula": "XYZ1234",
+  "Ano": 2020,
+  "Preco": 20000
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "Car created successfully"
+}
+```
+
+---
+
+#### Endpoint: `GET /car-list`
+**Description:**
+Fetches all cars from the database.
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": [
+    {
+      "Marca": "Toyota",
+      "Modelo": "Corolla",
+      "Matricula": "XYZ1234",
+      "Ano": 2020,
+      "Preco": 20000,
+      "Proprietario": "Stand"
+    }
+  ]
+}
+```
+
+---
+
+#### Endpoint: `DELETE /delete-cars`
+**Description:**
+Deletes a car by matricula.
+
+**Example Request:**
+```json
+{
+  "Matricula": "XYZ1234",
+  "Marca": "Toyota"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "Car deleted successfully"
+}
+```
+
+---
+
+#### Endpoint: `PUT /car-edit`
+**Description:**
+Edits car details.
+
+**Example Request:**
+```json
+{
+  "Matricula": "XYZ1234",
+  "Marca": "Toyota",
+  "Modelo": "Camry",
+  "Ano": 2021,
+  "Preco": 22000,
+  "Proprietario": "John Doe"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "Car details updated successfully"
+}
+```
+
+---
+
+#### Endpoint: `PUT /car-change-owner`
+**Description:**
+Changes the owner of a car.
+
+**Example Request:**
+```json
+{
+  "Matricula": "XYZ1234",
+  "NovoProprietario": "Jane Doe"
+}
+```
+
+**Example Response:**
+```json
+{
+  "isSuccess": true,
+  "data": "Car owner changed successfully"
+}
+```
+
+
+
 2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
 2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
 ```
